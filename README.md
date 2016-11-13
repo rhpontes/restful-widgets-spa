@@ -34,7 +34,7 @@ Assuming that you are connected at your database, enter with the commands bellow
 >node app.js
 4. The server will start at port 3000
 
-### After that will be available as follow endpoints:
+### After that will be available as follows endpoints:
 * GET /users http://localhost:3000/users
 * GET /users/:id http://localhost:3000/users/:id
 * GET /widgets http://localhost:3000/widgets
