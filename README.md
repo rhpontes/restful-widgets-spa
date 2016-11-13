@@ -15,7 +15,9 @@ Provides web service for widgets-spa application
     > var config = {    
         "url": "mongodb://localhost:27017/widget",    
         "persistenceMode": 1 // 0 - Persist mode mongoDB / 1 - Persist mode file    
-      }
+      }    
+      
+* By default the port is 3000 and persistence mode is file 
 
 ## DataBase
 If you selected database as persistence mode as shown above, you must load your database.    
@@ -25,7 +27,8 @@ If you selected database as persistence mode as shown above, you must load your 
        
 Assuming that you are connected at your database, enter with the commands bellow:
 >db.users.insert(JSON.parse(users.json));    
- db.users.insert(JSON.parse(widgets.json));
+ db.widgets.insert(JSON.parse(widgets.json));    
+ 
 
 ## Intructions
 1. Clone the repository
