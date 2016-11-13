@@ -10,7 +10,7 @@ Provides web service for widgets-spa application
 * File /configs/config-server.js 
     * You may to config your server for start
 * File /configs/config-persistence.js
-    * You may change the mode persistence eigher file or database(MongoDB)    
+    * You may change the mode persistence either file or database(MongoDB)    
     
     > var config = {    
         "url": "mongodb://localhost:27017/widget",    
