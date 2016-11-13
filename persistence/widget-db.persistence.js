@@ -1,7 +1,7 @@
 var ObjectID = require( "mongodb" ).ObjectID;
 var Q = require( "q" );
 var mongoGateway = require( "./mongo-connection.js" );
-var appError = require( "../model/error.model.js" ).createAppError;
+var appError = require( "../models/error.model.js" ).createAppError;
 
 function listAll() {
     var deferred = Q.defer();
