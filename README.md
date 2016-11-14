@@ -36,7 +36,7 @@ Assuming that you are in the project folder, enter with the commands bellow:
 >npm install
 3. Run the application
 >node app.js
-4. The server will start at port 3000
+4. The server will start at port 3001
 
 ### After that will be available as follows endpoints:
 * GET /users http://localhost:3000/users
