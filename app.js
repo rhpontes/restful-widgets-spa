@@ -10,6 +10,14 @@ var server = restify.createServer({
     "version": configServer.version
 });
 
+server.use(
+  function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+  }
+);
+
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 

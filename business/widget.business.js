@@ -36,24 +36,33 @@ function getWidget(req, res) {
 
 function addWidget(req, res) {
     var deferred = Q.defer();
-    
-    // Do validate new object
-    if(!v.validade(req.body, widgetModel))
-    {
-        deferred.reject(appError({
-            type: "Exception", 
-            errorCode: "b1"
-        }));
-        return(deferred.promise);
-    }
-    
-    widgetPersistence.addWidget(req.body)
-        .then(function(result){
-            deferred.resolve(result);
-        },
+    // Get last id
+    widgetPersistence.generateNewId().then(
+        function(newId){
+            req.body.id = newId;
+            // Do validate new object
+            var resultValidate = v.validate(req.body,widgetModel);
+            if(!resultValidate.valid)
+            {
+                deferred.reject(appError({
+                    type: "Exception", 
+                    errorCode: "b1"
+                }));
+                return(deferred.promise);
+            }
+            
+            widgetPersistence.addWidget(req.body)
+                .then(function(result){
+                    deferred.resolve(result);
+                },
+                function(reason){
+                    deferred.reject(reason);
+                });
+        }, 
         function(reason){
             deferred.reject(reason);
         });
+        
     return(deferred.promise);
 };
 
@@ -61,7 +70,8 @@ function updateWidget(req, res) {
     var deferred = Q.defer();
     
     // Do validate new object
-    if(!v.validade(req.body,widgetModel))
+    var result = v.validate(req.body,widgetModel);
+    if(!result.valid)
     {
         deferred.reject(appError({
             type: "Exception", 

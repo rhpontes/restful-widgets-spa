@@ -3,6 +3,13 @@ var Q = require( "q" );
 var mongoGateway = require( "./mongo-connection.js" );
 var appError = require( "../models/error.model.js" ).createAppError;
 
+
+exports.listAll = listAll;
+exports.getWidget = getWidget;
+exports.addWidget = addWidget;
+exports.updateWidget = updateWidget;
+exports.generateNewId = generateNewId;
+
 function listAll() {
     var deferred = Q.defer();
 	getDatabase().then(
@@ -60,6 +67,19 @@ function updateWidget (newWidget) {
                 deferred.makeNodeResolver());
         });
 	return( deferred.promise );
+}
+
+function generateNewId() {
+    var deferred = Q.defer();
+    
+    getDatabase().then(
+        function handleDatabaseResolve( mongo ) {
+            mongo.collection( "widgets" )
+                .findOne({$query:{},$orderby:{_id:-1}});
+            
+    });
+    
+    return (deferred.promise);
 }
 
 // I get a MongoDB connection from the resource pool. Returns a promise.

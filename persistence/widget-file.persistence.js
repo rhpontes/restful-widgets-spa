@@ -5,6 +5,10 @@ var appError = require('../models/error.model.js').createAppError;
 var widgets = [];
 
 exports.listAll = listAll;
+exports.getWidget = getWidget;
+exports.addWidget = addWidget;
+exports.updateWidget = updateWidget;
+exports.generateNewId = generateNewId;
 
 function listAll() {
     var deferred = Q.defer();
@@ -97,7 +101,27 @@ function updateWidget(newWidget) {
     return (deferred.promise);
 }
 
-
+function generateNewId() {
+    var deferred = Q.defer();
+    
+    getWidgets(function(err, _widgets) {
+        
+        if (err)
+            deferred.reject(
+                appError({
+                    type: "Exception", 
+                    errorCode: "p1"
+                }));
+                
+        if(_widgets && _widgets.length > 0)
+                deferred.resolve((_widgets[_widgets.length - 1].id + 1));
+        else
+            deferred.resolve(1);
+            
+    });
+    
+    return (deferred.promise);
+}
 
 function getWidgets(callback) {
     if (widgets.length > 0)
