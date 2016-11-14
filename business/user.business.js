@@ -22,9 +22,10 @@ function listUsers(req, res) {
 
 function getUser(req, res) {
     var deferred = Q.defer();
-    userPersistence.getUser(req.params.id)
+    userPersistence.getUser(parseInt(req.params.id))
         .then(function(result){
-            deferred.resolve(result);
+            if (result.length > 0)
+                deferred.resolve(result[0]); 
         },
         function(reason){
             deferred.reject(reason);

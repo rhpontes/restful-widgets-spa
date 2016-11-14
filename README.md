@@ -25,9 +25,9 @@ If you selected database as persistence mode as shown above, you must load your 
     *   /persistence/users.json
     *   /persistence/widgets.json
        
-Assuming that you are connected at your database, enter with the commands bellow:
->db.users.insert(JSON.parse(users.json));    
- db.widgets.insert(JSON.parse(widgets.json));    
+Assuming that you are in the project folder, enter with the commands bellow:
+>mongoimport -d widgets -c users --jsonArray ./persistence/users.json      
+ mongoimport -d widgets -c widgets --jsonArray ./persistence/widgets.json       
  
 
 ## Intructions

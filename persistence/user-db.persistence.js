@@ -3,6 +3,8 @@ var Q = require( "q" );
 var mongoGateway = require( "./mongo-connection.js" );
 var appError = require( "../models/error.model.js" ).createAppError;
 
+exports.listAll = listAll;
+exports.getUser = getUser;
 
 // I get all the friends. Returns a promise.
 function listAll() {

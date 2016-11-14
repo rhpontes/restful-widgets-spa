@@ -24,9 +24,10 @@ function listWidgets(req, res) {
 
 function getWidget(req, res) {
     var deferred = Q.defer();
-    widgetPersistence.getWidget(req.params.id)
+    widgetPersistence.getWidget(parseInt(req.params.id))
         .then(function(result){
-            deferred.resolve(result);
+            if (result.length > 0)
+                deferred.resolve(result[0]);                            
         },
         function(reason){
             deferred.reject(reason);
@@ -69,6 +70,9 @@ function addWidget(req, res) {
 function updateWidget(req, res) {
     var deferred = Q.defer();
     
+    // Only test
+    req.body.price = parseFloat(req.body.price);
+
     // Do validate new object
     var result = v.validate(req.body,widgetModel);
     if(!result.valid)

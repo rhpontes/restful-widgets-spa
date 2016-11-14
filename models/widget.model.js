@@ -7,7 +7,6 @@ var widgetModel = {
       "color": {"type": "string"},
       "price": {
           "type": "number", 
-          "multipleOf": 0.01,
           "minimum": 0,
           "exclusiveMinimum": true
       },

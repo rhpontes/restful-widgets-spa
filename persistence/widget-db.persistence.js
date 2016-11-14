@@ -74,8 +74,21 @@ function generateNewId() {
     
     getDatabase().then(
         function handleDatabaseResolve( mongo ) {
-            mongo.collection( "widgets" )
-                .findOne({$query:{},$orderby:{_id:-1}});
+            mongo.collection( "widgets" ).aggregate(
+                [
+                    {
+                        $group:{
+                            _id:"",
+                            maxId:{
+                                $max:"$id"
+                            }
+                        }
+                    }]).toArray( function(err,result){
+                        if(err)
+                            deferred.reject(err);
+                        else
+                            deferred.resolve((result[0].maxId + 1));
+                    });
             
     });
     
