@@ -17,7 +17,7 @@ Provides web service for widgets-spa application
         "persistenceMode": 1 // 0 - Persist mode mongoDB / 1 - Persist mode file    
       }    
       
-* By default the port is 3000 and persistence mode is file 
+* By default the port is 3001 and persistence mode is file 
 
 ## DataBase
 If you selected database as persistence mode as shown above, you must load your database.    
