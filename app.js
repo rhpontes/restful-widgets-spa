@@ -17,7 +17,7 @@ server.use(
     next();
   }
 );
-// test
+
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
