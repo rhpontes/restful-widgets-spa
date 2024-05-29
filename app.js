@@ -18,6 +18,7 @@ server.use(
   }
 );
 
+// Middleware
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
